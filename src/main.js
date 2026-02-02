@@ -157,12 +157,24 @@ function initAnimations() {
   if (title) {
     const text = title.innerText;
     title.innerHTML = '';
-    [...text].forEach((char, i) => {
-      const span = document.createElement('span');
-      span.innerText = char === ' ' ? '\u00A0' : char;
-      span.className = 'char';
-      span.style.animationDelay = `${i * 0.05}s`;
-      title.appendChild(span);
+    text.split(' ').forEach((word, wIdx) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'word';
+      wordSpan.style.display = 'inline-block';
+      wordSpan.style.whiteSpace = 'nowrap';
+
+      [...word].forEach((char, cIdx) => {
+        const span = document.createElement('span');
+        span.innerText = char;
+        span.className = 'char';
+        span.style.animationDelay = `${(wIdx * 5 + cIdx) * 0.05}s`;
+        wordSpan.appendChild(span);
+      });
+
+      title.appendChild(wordSpan);
+      if (wIdx < text.split(' ').length - 1) {
+        title.appendChild(document.createTextNode(' '));
+      }
     });
   }
 
