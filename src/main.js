@@ -289,3 +289,32 @@ function initTheme() {
 }
 
 initTheme();
+
+// Scroll Indicator Idle Logic
+function initScrollIndicator() {
+  const indicator = document.querySelector('.scroll-indicator');
+  let idleTimer;
+  const IDLE_TIME = 5000; // 5 seconds
+
+  function showIndicator() {
+    indicator.classList.add('visible');
+  }
+
+  function hideIndicator() {
+    indicator.classList.remove('visible');
+  }
+
+  function resetTimer() {
+    hideIndicator();
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(showIndicator, IDLE_TIME);
+  }
+
+  // Show initially after 5 seconds
+  idleTimer = setTimeout(showIndicator, IDLE_TIME);
+
+  // Reset timer on any scroll
+  window.addEventListener('scroll', resetTimer, { passive: true });
+}
+
+initScrollIndicator();

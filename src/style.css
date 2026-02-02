@@ -438,23 +438,27 @@ header {
 /* Scroll Section */
 .scroll-indicator {
   position: fixed;
-  /* Fixed as requested */
   z-index: 100;
   top: 50%;
-  /* Center vertically */
   right: 40px;
-  /* Float at right */
   transform: translateY(-50%);
   width: 25px;
   height: 45px;
   border: 2px solid var(--text-secondary);
   border-radius: 15px;
-  opacity: 0.6;
-  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  /* Hidden by default */
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s, transform 0.3s;
   pointer-events: auto;
 }
 
-.scroll-indicator:hover {
+.scroll-indicator.visible {
+  opacity: 0.6;
+  visibility: visible;
+}
+
+.scroll-indicator.visible:hover {
   opacity: 1;
   transform: translateY(-50%) scale(1.1);
 }
