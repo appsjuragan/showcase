@@ -57,7 +57,13 @@ function renderRepos(repos) {
       </div>
     `;
 
-    card.onclick = () => window.open(repo.html_url, '_blank');
+    card.onclick = () => {
+      if (repo.name === 'diskOfflaner-rust') {
+        window.location.href = '/showcase/diskofflaner/';
+      } else {
+        window.open(repo.html_url, '_blank');
+      }
+    };
     grid.appendChild(card);
   });
 }

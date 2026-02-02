@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/showcase/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DiskOfflaner | Safe & Simple Disk Management | appsjuragan</title>
+    <meta name="description"
+        content="A professional cross-platform desktop application for managing physical disk drives. Safe, fast, and built with Rust." />
+    <meta name="keywords"
+        content="disk management, rust, egui, windows, linux, offline disk, online disk, system administration" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="DiskOfflaner | Professional Disk Management" />
+    <meta property="og:description"
+        content="Manage disk online/offline status with safety and ease. Built with Rust for maximum performance." />
+    <meta property="og:image" content="/showcase/diskofflaner-preview.png" />
+    <meta property="og:url" content="https://appsjuragan.github.io/showcase/diskofflaner/" />
+
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 40px;
+            z-index: 1000;
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            border-color: var(--accent-primary);
+        }
+
+        .product-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .product-preview {
+            margin: 4rem auto;
+            max-width: 1000px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s 0.4s forwards;
+        }
+
+        .product-preview img {
+            width: 100%;
+            display: block;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .use-case-section {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 30px;
+            padding: 4rem;
+            margin-top: 6rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .badge-rust {
+            background: #dea584;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background-color: #10b981;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        .status-offline {
+            background-color: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+    <a href="/showcase/" class="back-btn">
+        <span>←</span> Back to Showcase
+    </a>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+    </button>
+
+    <header style="height: auto; min-height: 80vh;">
+        <canvas id="matrix-canvas"></canvas>
+        <div class="container product-hero">
+            <div style="margin-bottom: 2rem; opacity: 0; animation: fadeInUp 0.8s forwards;">
+                <span class="badge-rust">Built with Rust</span>
+            </div>
+            <h1 class="hero-title" id="page-title">DiskOfflaner</h1>
+            <p class="hero-subtitle" style="margin-left: auto; margin-right: auto;">
+                High-performance disk management with safety-first engineering. Control physical drives with scientific
+                precision.
+            </p>
+
+            <div class="product-preview">
+                <img src="/showcase/diskofflaner-preview.png" alt="DiskOfflaner Interface Preview">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="features">
+            <h2 class="section-title">Core Features</h2>
+            <div class="feature-grid">
+                <div class="repo-card" style="cursor: default;">
+                    <h3 class="repo-name">Visual Dashboard</h3>
+                    <p class="repo-description">Comprehensive overview of all physical disks, models, and sizes in a
+                        clean, high-density layout.</p>
+                    <div class="tags"><span class="tag">egui</span> <span class="tag">cross-platform</span></div>
+                </div>
+                <div class="repo-card" style="cursor: default;">
+                    <h3 class="repo-name">Status Indicators</h3>
+                    <p class="repo-description">Real-time indicators for Online <span
+                            class="status-dot status-online"></span> and Offline <span
+                            class="status-dot status-offline"></span> states.</p>
+                    <div class="tags"><span class="tag">UI/UX</span> <span class="tag">Real-time</span></div>
+                </div>
+                <div class="repo-card" style="cursor: default;">
+                    <h3 class="repo-name">One-Click Logic</h3>
+                    <p class="repo-description">Toggle disk availability instantly. Abstracting away complex WinAPI and
+                        Linux kernel calls.</p>
+                    <div class="tags"><span class="tag">Performance</span> <span class="tag">Bypass CMD</span></div>
+                </div>
+                <div class="repo-card" style="cursor: default;">
+                    <h3 class="repo-name">Safety Isolation</h3>
+                    <p class="repo-description">Intelligent detection prevents system/boot disk manipulation. Protect
+                        your core OS from accidental changes.</p>
+                    <div class="tags"><span class="tag">Security</span> <span class="tag">Verification</span></div>
+                </div>
+                <div class="repo-card" style="cursor: default;">
+                    <h3 class="repo-name">Partition Control</h3>
+                    <p class="repo-description">Mount and unmount specific partitions. Granular control over volume
+                        visibility and accessibility.</p>
+                    <div class="tags"><span class="tag">Storage</span> <span class="tag">Advanced</span></div>
+                </div>
+                <div class="repo-card" style="cursor: default;">
+                    <h3 class="repo-name">USB Auto-Sensing</h3>
+                    <p class="repo-description">Hot-plug support detects external storage changes immediately without
+                        refreshing.</p>
+                    <div class="tags"><span class="tag">Event Driven</span> <span class="tag">Hotplug</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="use-case-section">
+            <h2 class="section-title side">Enterprise Use Cases</h2>
+            <div class="showcase-layout" style="grid-template-columns: 1fr 1fr; gap: 4rem;">
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-primary);">Security & Data Protection</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        Physically connected but logically isolated. Keep sensitive backup drives offline to protect
+                        against ransomware and unauthorized access while maintaining rapid restoration capability.
+                    </p>
+
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-primary);">System Maintenance</h3>
+                    <p style="color: var(--text-secondary);">
+                        Safely prepare disks for maintenance or replacement. Ensure files are flushed and IO is ceased
+                        through the application's built-in validation before taking storage offline.
+                    </p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-primary);">Testing & Development</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        Simulate disk failures or environment changes by toggling drive availability. Ideal for storage
+                        application developers and QA engineers testing failure recovery.
+                    </p>
+
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-primary);">Power User Efficiency</h3>
+                    <p style="color: var(--text-secondary);">
+                        Avoid digging through Disk Management (Windows) or complex `mount` commands (Linux). A unified,
+                        high-performance interface for all disk operations.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="margin-top: 8rem;">
+        <div class="container">
+            <p>&copy; 2026 <span class="footer-link">appsjuragan</span>. Engineering for the next generation.</p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;">
+                View source code on <a href="https://github.com/appsjuragan/diskOfflaner-rust" class="footer-link"
+                    target="_blank">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/diskofflaner.js"></script>
+</body>
+
+</html>
