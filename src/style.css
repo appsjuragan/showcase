@@ -138,20 +138,19 @@ header {
   position: relative;
   z-index: 2;
   font-size: clamp(3rem, 10vw, 7rem);
-  /* Slightly reduced max size for safety */
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   background: var(--text-primary);
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 2rem;
-  line-height: 1.25;
-  /* Increased to prevent clipping */
-  padding: 0.1em 0;
-  /* Added padding for gradient safety */
+  line-height: 1.4;
+  padding: 0.3em 0.2em;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: block;
+  overflow: visible !important;
 }
 
 .hero-subtitle {
