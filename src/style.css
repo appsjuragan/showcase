@@ -138,20 +138,16 @@ header {
   position: relative;
   z-index: 2;
   font-size: clamp(2.5rem, 8vw, 6.5rem);
-  /* Slightly smaller peak for better wrapping */
   font-weight: 800;
   letter-spacing: -0.01em;
-  background: var(--text-primary);
   background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 2.5rem;
   line-height: 1.6;
-  /* Higher for vertical safety */
   padding: 0.5em 0.2em;
-  /* Generous padding */
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: block;
   overflow: visible !important;
 }
@@ -159,6 +155,24 @@ header {
 .word {
   display: inline-block;
   white-space: nowrap;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+  overflow: visible !important;
+}
+
+.char {
+  display: inline-block;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  -webkit-text-fill-color: inherit;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+  padding-bottom: 0.3em;
+  margin-bottom: -0.3em;
   overflow: visible !important;
 }
 

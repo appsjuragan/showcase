@@ -145,40 +145,40 @@ function getLangColor(lang) {
 }
 
 function initAnimations() {
-  // Cursor Follower
   const cursor = document.querySelector('.cursor-follower');
   document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
 
-  // Title Animation
   const title = document.getElementById('hero-title');
   if (title) {
     const text = title.innerText;
     title.innerHTML = '';
-    text.split(' ').forEach((word, wIdx) => {
+    let globalIdx = 0;
+    const words = text.split(' ');
+
+    words.forEach((word, wIdx) => {
       const wordSpan = document.createElement('span');
       wordSpan.className = 'word';
-      wordSpan.style.display = 'inline-block';
-      wordSpan.style.whiteSpace = 'nowrap';
 
-      [...word].forEach((char, cIdx) => {
+      [...word].forEach((char) => {
         const span = document.createElement('span');
         span.innerText = char;
         span.className = 'char';
-        span.style.animationDelay = `${(wIdx * 5 + cIdx) * 0.05}s`;
+        span.style.animationDelay = `${globalIdx * 0.05}s`;
         wordSpan.appendChild(span);
+        globalIdx++;
       });
 
       title.appendChild(wordSpan);
-      if (wIdx < text.split(' ').length - 1) {
+      if (wIdx < words.length - 1) {
         title.appendChild(document.createTextNode(' '));
+        globalIdx++;
       }
     });
   }
 
-  // Parallax Effect
   document.addEventListener('mousemove', (e) => {
     const x = (window.innerWidth / 2 - e.pageX) / 50;
     const y = (window.innerHeight / 2 - e.pageY) / 50;
